@@ -2,6 +2,7 @@ from time import sleep
 from tkinter import *
 from tkinter import ttk
 from clicker import sim_mouseclick
+from mouseTracker import listen
 from RepeatedTimer import RepeatedTimer
 
 def trigger_button():
@@ -9,6 +10,7 @@ def trigger_button():
   if btn["text"] == "Start":
     # Start periodic clicking
     btn.config(text="Stop")
+    listen()
     rt = RepeatedTimer(2, sim_mouseclick)
   else:
     btn["text"] == "Stop"

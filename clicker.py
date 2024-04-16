@@ -12,7 +12,3 @@ def sim_mouseclick():
 
   mouse.press(Button.left)
   mouse.release(Button.left)
-
-def listen():
-  listener = mouse.Listener(
-    on_move
