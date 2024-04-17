@@ -67,7 +67,7 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-root.iconbitmap(resource_path("img/pointer-hand.ico"))
+root.iconbitmap(resource_path("pointer-hand.ico"))
 root.geometry("200x50")
 # make window non-resizable on either axis
 root.resizable(0,0)
