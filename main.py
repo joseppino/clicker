@@ -16,6 +16,7 @@ SCREEN_WIDTH = root.winfo_screenwidth()
 # initialise interval function variable
 intv = None
 active_timer = time()
+num_autoclicks = 0
 
 def trigger_button():
   if btn["text"] == "Start":
@@ -28,14 +29,20 @@ def trigger_button():
     btn["text"] == "Stop"
     btn.config(text="Start")
     ttk.Style().configure("TButton", background="green")
+    global num_autoclicks
+    num_autoclicks = 0
+    label.config(text="Auto-clicks: 0")
     intv()
 
 def simulate_action(coords):
   global active_timer
+  global num_autoclicks
   listener = listen()
   # if user inactive for more than 4.5mins
   if time() - active_timer > 270:
     sim_mouseclick(coords)
+    num_autoclicks += 1
+    label.config(text="Auto-clicks: {0}".format(num_autoclicks))
     active_timer = time()
 
 def on_click(x, y, button, pressed):
@@ -60,7 +67,7 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-root.iconbitmap(resource_path("pointer-hand.ico"))
+root.iconbitmap(resource_path("img/pointer-hand.ico"))
 root.geometry("200x50")
 # make window non-resizable on either axis
 root.resizable(0,0)
@@ -69,6 +76,8 @@ root.title("Clicker")
 ttk.Style().configure("TButton", background="green")
 btn = ttk.Button(root, text="Start", command=trigger_button)
 btn.pack()
+label = ttk.Label(root, text='Auto-clicks: 0')
+label.pack()
 
 # bind return key to trigger the button
 root.bind("<Return>", lambda e: btn.invoke())
