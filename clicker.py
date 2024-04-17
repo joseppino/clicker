@@ -1,14 +1,9 @@
 from pynput.mouse import Button, Controller
 
-def sim_mouseclick():
+def sim_mouseclick(coords):
   mouse = Controller()
 
-  print("The current pointer position is {0}".format(
-    mouse.position))
-
-  mouse.position = (0, 750)
-  print('Now we have moved it to {0}'.format(
-      mouse.position))
+  mouse.position = (coords[0], coords[1])
 
   mouse.press(Button.left)
   mouse.release(Button.left)
