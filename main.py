@@ -10,8 +10,7 @@ from time import time
 root = Tk()
 
 # interval in seconds
-TIMER_INTERVAL = 2
-SCREEN_WIDTH = root.winfo_screenwidth()
+TIMER_INTERVAL = 15
 
 # initialise interval function variable
 intv = None
@@ -24,7 +23,7 @@ def trigger_button():
     btn.config(text="Stop")
     ttk.Style().configure("TButton", background="red")
     global intv
-    intv = call_repeatedly(TIMER_INTERVAL, simulate_action, (SCREEN_WIDTH / 2, 0))
+    intv = call_repeatedly(TIMER_INTERVAL, simulate_action, (root.winfo_screenwidth() / 2, 0))
   else:
     btn["text"] == "Stop"
     btn.config(text="Start")
